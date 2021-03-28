@@ -32,6 +32,6 @@ Start:
 
 ```
 ~/start-crc.sh
-~/start-crc-sudo.sh
+~/start-crc-local-dns-config.sh
 ~/start-crc-login.sh
 ```

@@ -14,9 +14,6 @@ ssh lenovo -t '/home/aliok/host/start-crc.sh'
 header_text "Copying KUBECONFIG file into ${DIR}/crc.kubeconfig"
 scp lenovo:/home/aliok/.crc/machines/crc/kubeconfig ${DIR}/crc.kubeconfig
 
-# header_text "Renaming the context in new KUBECONFIG file"
-# KUBECONFIG=${DIR}/crc.kubeconfig kubectl config rename-context admin crc-lenovo
-
 header_text "Renaming the cluster and the context in new KUBECONFIG file"
 sed -i 's/cluster: crc/cluster: crc-lenovo/g' ${DIR}/crc.kubeconfig
 sed -i 's/name: crc/name: crc-lenovo/g' ${DIR}/crc.kubeconfig
@@ -28,4 +25,4 @@ KUBECONFIG=~/.kube/config:${DIR}/crc.kubeconfig kubectl config view --merge --fl
 header_text "Switching to new context"
 kubectx crc-lenovo
 
-error_text "Now run ${DIR}/start-crc-sudo.sh"
+error_text "Now run ${DIR}/start-crc-local-dns-config.sh"
