@@ -13,6 +13,8 @@ ssh lenovo -t '/home/aliok/host/start-kind.sh'
 header_text "Copying KUBECONFIG file into ${DIR}/kind.kubeconfig"
 scp lenovo:/home/aliok/host/kind.kubeconfig ${DIR}/kind.kubeconfig
 
+# TODO: maybe change the cluster name and context name first?
+
 header_text "Merging KUBECONFIG file into the ~/.kube/config"
 KUBECONFIG=~/.kube/config:${DIR}/kind.kubeconfig kubectl config view --merge --flatten > ~/.kube/config
 

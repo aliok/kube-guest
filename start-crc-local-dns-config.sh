@@ -29,6 +29,6 @@ address=/api.crc.testing/${CRC_SERVER_IP}
 EOF
 
 header_text "Restarting dnsmasq"
-sudo brew services start dnsmasq
+sudo brew services restart dnsmasq
 
 error_text "Make sure you have 127.0.0.1 and 8.8.8.8 in your DNS settings in 'Network Preferences'"
