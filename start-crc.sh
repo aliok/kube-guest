@@ -4,7 +4,7 @@
 set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-CRC_SERVER_IP="192.168.1.151"
+CRC_SERVER_IP="192.168.0.151"
 
 source ${DIR}/common.sh
 
