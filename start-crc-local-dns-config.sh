@@ -31,3 +31,6 @@ header_text "Restarting dnsmasq"
 sudo brew services restart dnsmasq
 
 error_text "Make sure you have 127.0.0.1 and 8.8.8.8 in your DNS settings in 'Network Preferences'"
+
+error_text "Now run this:"
+error_text "${DIR}/start-crc-login.sh"

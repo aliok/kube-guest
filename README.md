@@ -34,5 +34,8 @@ On Mac, I had to
 Start:
 
 ```
-~/start-crc.sh
+# unfortunately for some reason running all of these in 1 script does not work
+./start-crc.sh
+./start-crc-local-dns-config.sh
+./start-crc-login.sh
 ```
