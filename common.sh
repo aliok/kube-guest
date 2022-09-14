@@ -21,3 +21,11 @@ function header_text {
 function error_text {
   echo "$error_color$*$reset"
 }
+
+CLUSTER_HOST="lenovo"
+
+# our host name is lenovo
+CLUSTER_IP=`cat /etc/hosts | grep "${CLUSTER_HOST}" | awk '{ print $1 }'`
+
+header_text "Cluster hostname: ${CLUSTER_HOST}"
+header_text "Cluster IP      : ${CLUSTER_IP}"

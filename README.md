@@ -29,7 +29,7 @@ See https://www.opensourcerers.org/2021/03/22/accessing-a-remote-codeready-conta
 On Mac, I had to
 - install dnsmasq to resolve DNS requests for the *.testing domain with the Lenovo IP
 - set resolver config to use the local dnsmasq server as a DNS resolver for *.testing domain
-- had to manually add 127.0.0.1 as a DNS server in Network Preferences since #2 above didn't really work
+- had to manually add 127.0.0.1 as a DNS server in Network Preferences since #2 above didn't really work (note: it should be above 8.8.8.8)
 
 Start:
 

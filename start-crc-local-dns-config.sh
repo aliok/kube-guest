@@ -4,7 +4,6 @@
 set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-CRC_SERVER_IP="192.168.2.151"
 
 source ${DIR}/common.sh
 
@@ -16,7 +15,7 @@ sudo rm /etc/resolver/testing || true
 sudo touch /etc/resolver/testing
 sudo chmod 666 /etc/resolver/testing
 # Following didn't work and I had to install dnsmasq locally on the Mac
-# sudo echo "nameserver ${CRC_SERVER_IP}" >> /etc/resolver/testing
+# sudo echo "nameserver ${CLUSTER_IP}" >> /etc/resolver/testing
 sudo echo "nameserver 127.0.0.1" >> /etc/resolver/testing
 sudo echo "port 53" >> /etc/resolver/testing
 sudo echo "domain testing" >> /etc/resolver/testing
@@ -24,8 +23,8 @@ sudo echo "search_order 1" >> /etc/resolver/testing
 
 header_text "Setting up dnsmasq settings"
 tee /usr/local/etc/dnsmasq.conf &>/dev/null <<EOF
-address=/apps-crc.testing/${CRC_SERVER_IP}
-address=/api.crc.testing/${CRC_SERVER_IP}
+address=/apps-crc.testing/${CLUSTER_IP}
+address=/api.crc.testing/${CLUSTER_IP}
 EOF
 
 header_text "Restarting dnsmasq"

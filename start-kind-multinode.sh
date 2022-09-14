@@ -8,10 +8,10 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 source ${DIR}/common.sh
 
 header_text "Executing start on host"
-ssh lenovo -t '/home/aliok/host/start-kind-multinode.sh'
+ssh $CLUSTER_HOST -t '/home/aliok/host/start-kind-multinode.sh'
 
 header_text "Copying KUBECONFIG file into ${DIR}/kind.kubeconfig"
-scp lenovo:/home/aliok/host/kind.kubeconfig ${DIR}/kind.kubeconfig
+scp $CLUSTER_HOST:/home/aliok/host/kind.kubeconfig ${DIR}/kind.kubeconfig
 
 # TODO: maybe change the cluster name and context name first?
 
