@@ -25,6 +25,7 @@ header_text "Setting up dnsmasq settings"
 tee /usr/local/etc/dnsmasq.conf &>/dev/null <<EOF
 address=/apps-crc.testing/${CLUSTER_IP}
 address=/api.crc.testing/${CLUSTER_IP}
+local-ttl=172888
 EOF
 
 header_text "Restarting dnsmasq"
