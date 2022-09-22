@@ -12,6 +12,7 @@ ssh $CLUSTER_HOST "crc console --credentials"
 
 header_text "Deleting existing ${DIR}/crc.kubeconfig"
 rm ${DIR}/crc.kubeconfig || true
+touch ${DIR}/crc.kubeconfig
 
 header_text "Logging in as kubeadmin with a new kubeconfig file at ${DIR}/crc.kubeconfig"
 KUBEADMIN_PW=$(ssh $CLUSTER_HOST "crc console --credentials --output json" | jq -r '.clusterConfig.adminCredentials.password')
@@ -23,7 +24,8 @@ sed -i 's/name: api-crc-testing:6443/name: crc-lenovo/g' ${DIR}/crc.kubeconfig
 sed -i 's/cluster: api-crc-testing:6443/cluster: crc-lenovo/g' ${DIR}/crc.kubeconfig
 
 header_text "Merging KUBECONFIG file into the ~/.kube/config"
-KUBECONFIG=~/.kube/config:${DIR}/crc.kubeconfig kubectl config view --merge --flatten > ~/.kube/config
+KUBECONFIG=~/.kube/config:${DIR}/crc.kubeconfig kubectl config view --merge --flatten > ~/.kube/tmp.config
+mv ~/.kube/tmp.config ~/.kube/config
 
 header_text "Switching to new context"
 kubectx crc-lenovo
