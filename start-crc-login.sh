@@ -14,6 +14,11 @@ header_text "Deleting existing ${DIR}/crc.kubeconfig"
 rm ${DIR}/crc.kubeconfig || true
 touch ${DIR}/crc.kubeconfig
 
+header_text "Deleting old CRC stuff in KUBECONFIG file ~/.kube/config"
+KUBECONFIG=~/.kube/config kubectl config delete-user kubeadmin/api-crc-testing:6443 || true
+KUBECONFIG=~/.kube/config kubectl config delete-context crc-lenovo
+KUBECONFIG=~/.kube/config kubectl config delete-cluster crc-lenovo
+
 header_text "Logging in as kubeadmin with a new kubeconfig file at ${DIR}/crc.kubeconfig"
 KUBEADMIN_PW=$(ssh $CLUSTER_HOST "crc console --credentials --output json" | jq -r '.clusterConfig.adminCredentials.password')
 KUBECONFIG=${DIR}/crc.kubeconfig oc login -u kubeadmin -p ${KUBEADMIN_PW} https://api.crc.testing:6443 --insecure-skip-tls-verify=true
