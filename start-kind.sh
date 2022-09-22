@@ -19,7 +19,8 @@ scp $CLUSTER_HOST:/home/aliok/host/kind.kubeconfig ${DIR}/kind.kubeconfig
 # TODO: maybe change the cluster name and context name first?
 
 header_text "Merging KUBECONFIG file into the ~/.kube/config"
-KUBECONFIG=~/.kube/config:${DIR}/kind.kubeconfig kubectl config view --merge --flatten > ~/.kube/config
+KUBECONFIG=~/.kube/config:${DIR}/kind.kubeconfig kubectl config view --merge --flatten > ~/.kube/tmp.config
+mv ~/.kube/tmp.config ~/.kube/config
 
 header_text "Switching to new context"
 kubectx kind-lenovo
