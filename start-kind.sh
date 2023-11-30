@@ -18,9 +18,9 @@ header_text "Copying KUBECONFIG file into ${DIR}/kind.kubeconfig"
 scp $CLUSTER_HOST:/home/aliok/host/kind.kubeconfig ${DIR}/kind.kubeconfig
 
 header_text "Deleting old Kind stuff in KUBECONFIG file ~/.kube/config"
-KUBECONFIG=~/.kube/config kubectl config delete-user kind-${CLUSTER_HOST}
-KUBECONFIG=~/.kube/config kubectl config delete-context kind-${CLUSTER_HOST}
-KUBECONFIG=~/.kube/config kubectl config delete-cluster kind-${CLUSTER_HOST}
+KUBECONFIG=~/.kube/config kubectl config delete-user kind-${CLUSTER_HOST} || true
+KUBECONFIG=~/.kube/config kubectl config delete-context kind-${CLUSTER_HOST} || true
+KUBECONFIG=~/.kube/config kubectl config delete-cluster kind-${CLUSTER_HOST} || true
 
 # TODO: maybe change the cluster name and context name first?
 
